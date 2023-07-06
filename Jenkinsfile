@@ -3,6 +3,7 @@ node {
         docker.image('python:2-alpine').inside {
             // echo ls cources folder to check
             sh 'ls -l'
+            sh 'ls -l src'
             sh 'python -m py_compile ./sources/add2vals.py ./sources/calc.py'
         }
     }
