@@ -12,7 +12,7 @@ node {
         }
     }
     stage('Deliver') {
-        docker.image('python:3.9').inside {
+        docker.image('python:3.9-alpine').inside {
             sh 'pip install pyinstaller'
             sh 'pyinstaller --onefile ./sources/add2vals.py'
             archiveArtifacts 'dist/add2vals'
