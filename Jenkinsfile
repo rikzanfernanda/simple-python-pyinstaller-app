@@ -12,7 +12,8 @@ node {
         }
     }
     stage('Deliver') {
-        docker.image('cdrx/pyinstaller-linux:python2').inside {
+        docker.image('python:2-alpine').inside {
+            sh 'pip install pyinstaller'
             sh 'pyinstaller --onefile ./sources/add2vals.py'
             archiveArtifacts 'dist/add2vals'
         }
