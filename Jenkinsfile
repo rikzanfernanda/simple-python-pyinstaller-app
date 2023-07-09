@@ -1,5 +1,5 @@
 node {
-    stage ('Checkout') {
+    stage('Checkout') {
         checkout scm // to check out the source code from a Git repository into the agent’s workspace
     }
     stage('Build') {
@@ -14,7 +14,7 @@ node {
             junit 'test-reports/results.xml'
         }
     }
-    stage('Deliver') {
+    stage('Deploy') {
         sh 'docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-rikzan_fernanda/sources:/src cdrx/pyinstaller-linux:python2 \'pyinstaller -F add2vals.py\''
         archiveArtifacts artifacts: 'sources/add2vals.py', followSymlinks: false
         // sh 'docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-rikzan_fernanda/sources:/src cdrx/pyinstaller-linux:python2 \'rm -rf build dist\''
