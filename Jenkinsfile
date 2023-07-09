@@ -1,7 +1,7 @@
 node {
     stage('Build') {
         docker.image('python:2-alpine').inside {
-            // checkout scm // to check out the source code from a Git repository into the agent’s workspace
+            checkout scm // to check out the source code from a Git repository into the agent’s workspace
             sh 'ls -l' // to check the files in the current directory
             sh 'python -m py_compile ./sources/add2vals.py ./sources/calc.py'
         }
